@@ -12,7 +12,11 @@ for (let i=0; i<btns1.length;i++){
     let btn1 = btns1[i]
     btn1.addEventListener('click', (event)=>{
         firstValue = getCurrencyFromInput1(event.target)
-        convert()
+        if (firstValue != secondValue){
+            convert()
+        } else {
+            output.textContent = input.value
+        }
     } )
 }
 
@@ -20,7 +24,12 @@ for (let i=0; i<btns2.length;i++){
     let btn2 = btns2[i]
     btn2.addEventListener('click', (event)=>{
         secondValue = getCurrencyFromInput2(event.target)
-        convert()
+        if (firstValue != secondValue){
+            convert()
+        } else {
+            output.textContent = input.value
+        }
+        
     } )
 }
 
@@ -29,7 +38,7 @@ function getCurrencyFromInput1(param){
         if (btns1[i].classList.contains('active')){
             btns1[i].classList.remove('active')
             param.classList.add('active')
-            convert()
+            //convert()
             let value = param.getAttribute('data-value')
             return value;
         }
@@ -41,7 +50,7 @@ function getCurrencyFromInput2(param){
         if (btns2[i].classList.contains('active')){
             btns2[i].classList.remove('active')
             param.classList.add('active')
-            convert()
+            //convert()
             let value = param.getAttribute('data-value')
             return value;
         }
@@ -58,7 +67,6 @@ function convert(){
     fetched(firstValue, secondValue, amount)
         .then(data => {
             if (input.value == ''){
-                
                 output.textContent = ''
             } else {
                 output.textContent = data.result;
