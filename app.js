@@ -1,84 +1,90 @@
-const firstCurrency = document.querySelector('.list-currency')                    //получаем 1 окно ввода
-const secondCurrency = document.querySelector('.secondlist-currency')             //получаем 2 окно вывода
+let btns1 = document.querySelectorAll('.currency_val')
+let btns2 = document.querySelectorAll('.currency_val2')
 const hint = document.querySelector('.currency-text')                  // получаем окно с 1 подсказкой курса первой валюты ко второй
-const secondHind = document.querySelector('.second__currency-text')    //   получаем окно с 2 подсказкой курса второй валюты к первой
+const secondHint = document.querySelector('.second__currency-text')
 let firstValue = 'USD'
 let secondValue = 'RUB'
 const input = document.querySelector('input')
 const output = document.querySelector('.output')
 let amount = input.value;
 
+for (let i=0; i<btns1.length;i++){
+    let btn1 = btns1[i]
+    btn1.addEventListener('click', (event)=>{
+        firstValue = getCurrencyFromInput1(event.target)
+        convert()
+    } )
+}
 
-firstCurrency.addEventListener('click', (event)=>{
-    firstValue = getCurrencyFromInput(event.target, firstCurrency) 
-    convert()
-})
-secondCurrency.addEventListener('click',(event)=>{
-    secondValue = getCurrencyFromInput(event.target, secondCurrency)
-    convert()
-})
+for (let i=0; i<btns2.length;i++){
+    let btn2 = btns2[i]
+    btn2.addEventListener('click', (event)=>{
+        secondValue = getCurrencyFromInput2(event.target)
+        convert()
+    } )
+}
+
+function getCurrencyFromInput1(param){
+    for (let i=0;i<btns1.length;i++){
+        if (btns1[i].classList.contains('active')){
+            btns1[i].classList.remove('active')
+            param.classList.add('active')
+            convert()
+            let value = param.getAttribute('data-value')
+            return value;
+        }
+    }
+}
+
+function getCurrencyFromInput2(param){
+    for (let i=0;i<btns2.length;i++){
+        if (btns2[i].classList.contains('active')){
+            btns2[i].classList.remove('active')
+            param.classList.add('active')
+            convert()
+            let value = param.getAttribute('data-value')
+            return value;
+        }
+    }
+}
+
 input.addEventListener('keyup', (event)=>{
     convert()
-    
 })
-
-
-function getCurrencyFromInput(param, currencyNumber){
-    let arr = currencyNumber.getElementsByClassName('active')
-    arr[0].classList.remove('active')
-    param.classList.add('active')
-    let value = param.getAttribute('data-value')
-    return value;
-}
 
 
 function convert(){
     amount = input.value
-    getNewAmount(firstValue, secondValue, amount)
+    fetched(firstValue, secondValue, amount)
         .then(data => {
-            if (amount == ''){
+            if (input.value == ''){
+                
                 output.textContent = ''
             } else {
                 output.textContent = data.result;
             }   
         })
-    getRate(firstValue, secondValue)
+    fetched(firstValue, secondValue, amount = 1)
         .then(data => {
             rate = data.result
             hint.textContent = `1 ${firstValue} = ${rate} ${secondValue}`
         })
-    getSecondRate(firstValue, secondValue)
+    fetched(secondValue, firstValue, amount = 1)
         .then(data => {
             let secondRate = data.result
-            secondHind.textContent = `1 ${secondValue} = ${secondRate} ${firstValue}`
+            secondHint.textContent = `1 ${secondValue} = ${secondRate} ${firstValue}`
         })
     
 }
 
 
-const getNewAmount = async (firstValue, secondValue, amount) => {
+
+const fetched = async (firstValue, secondValue, amount) => {
     const response = await fetch(`https://api.exchangerate.host/convert?from=${firstValue}&to=${secondValue}&amount=${amount}`)
     const data = await response.json()
     return data
 }
 
-const getRate = async (firstValue, secondValue) => {
-    const response = await fetch ((`https://api.exchangerate.host/convert?from=${firstValue}&to=${secondValue}`))
-    const data = await response.json()
-    return data
-}
-
-const getSecondRate = async (firstValue, secondValue) => {
-    const response = await fetch ((`https://api.exchangerate.host/convert?from=${secondValue}&to=${firstValue}`))
-    const data = await response.json()
-    return data
-}
-
-
 if (input.value==1){
     convert()
 } 
-
-if (input.value === ''){
-    console.log(123)
-}
