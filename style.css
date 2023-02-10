@@ -134,5 +134,5 @@ input::-webkit-inner-spin-button {
     display: flex;
     height: 102px;
     flex-direction: column;
-    overflow: scroll;
+    overflow: auto;
 }
