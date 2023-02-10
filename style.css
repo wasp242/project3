@@ -1,0 +1,124 @@
+@import url(https://fonts.googleapis.com/css?family=Roboto:regular,500,700);
+body{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Roboto';
+}
+.wrapper{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+.header{
+    width: 100vw;
+    max-height: 50px;
+    display: flex;
+    justify-content: center;
+    background-color: #F5F5F6;
+    align-items: center;
+}
+.header__list{
+    display: flex;
+}
+nav{
+    margin-left: 64px;
+    margin-right: 110px;
+}
+ul{
+    padding: 0;
+}
+li{
+    list-style: none;
+    padding: 0 10px;
+    font-size: 11px;
+    cursor: pointer;
+    letter-spacing: 0.06em;
+}
+.header__list li:first-child{
+    font-weight: 700;
+}
+.header__btn{
+    height: 29px;
+    border: none;
+    background-color: white;
+    font-size: 11px;
+    padding: 0 10px;
+    margin: 0;
+    cursor: pointer;
+}
+
+.main-container{
+    max-width: 641px;
+    display: flex;
+    margin: 0 auto;
+    flex-direction: column;
+}
+.block{
+    display: flex;
+    justify-content: space-between;
+}
+.left-block{
+    display: flex;
+    flex-direction: column;
+    max-width: 259px;
+    position: relative;
+}
+.left-block__title{
+    color: #9F9F9F;
+    font-size: 12px;
+
+}
+
+.list-currency, .secondlist-currency{
+    display: flex;
+}
+.list-currency li, .secondlist-currency li{
+    width: 65px;
+    padding: 10px;
+    text-align: center;
+    border: 1px solid #C6C6C6;
+    border-collapse: separate;
+    color: #C6C6C6;
+}
+.currency{
+    border: 1px solid #C6C6C6;
+    display: flex;
+    height: 102px;
+    flex-direction: column;
+    overflow: scroll;
+}
+input, .output{
+    max-width: 250px;
+    height: 38px;
+    border: none;
+    font-size: 36px;
+    padding-left: 14px;
+    padding-top: 10px;
+    outline: none;
+    font-weight: 700;
+    line-height: 42px;
+    font-family: 'Roboto';
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    display: none; 
+    -webkit-appearance: none;
+    margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
+}
+.currency-text, .second__currency-text{
+    position: absolute;
+    bottom: 10px;
+    color: #C6C6C6;
+    cursor: default;
+    padding-left: 20px;
+}
+.active{
+    background-color: #833AE0;
+    color: white;
+}
+
+.text{
+    display: block;
+}

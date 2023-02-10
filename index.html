@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Document</title>
+</head>
+<body>
+<div class="wrapper">
+    <header class="header">
+        <div class="header__img">
+            <img src="1.png" alt="">
+        </div>
+        <nav>
+            <ul class="header__list">
+                <li>БАНК</li>
+                <li>БИЗНЕС</li>
+                <li>ИНВЕСТИЦИИ</li>
+                <li>СТРАХОВАНИЕ</li>
+                <li>МОБАЙЛ</li>
+                <li>ПУТЕШЕСТВИЯ</li>
+                <li>РАЗВЛЕЧЕНИЯ</li>
+            </ul>
+        </nav>
+        <button class="header__btn">ВОЙТИ</button>
+    </header>
+    <main>
+        <div class="main-container">
+            <h1>Конвертер валют онлайн</h1>
+            <div class="block">
+                <div class="left-block">
+                    <span class="left-block__title">У меня есть</span>
+                    <ul class="list-currency">
+                        <li class="currency_val" data-value="RUB">RUB</li>
+                        <li class="currency_val active" data-value="USD">USD</li>
+                        <li class="currency_val" data-value="EUR">EUR</li>
+                        <li class="currency_val" data-value="GBP">GBP</li>
+                    </ul>
+                    <div class="currency">
+                        <input type="number" class="input" value="1">
+                        <span class="currency-text"></span>
+                    </div>
+                </div> 
+                <div class="left-block">
+                    <span class="left-block__title">Хочу приобрести</span>
+                    <ul class="secondlist-currency">
+                        <li class="currency_val active" data-value="RUB">RUB</li>
+                        <li class="currency_val" data-value="USD">USD</li>
+                        <li class="currency_val" data-value="EUR">EUR</li>
+                        <li class="currency_val" data-value="GBP">GBP</li>
+                    </ul>
+                    <div class="currency">
+                        <span type="text" class="output"></span>
+                        <span class="second__currency-text"></span>
+                    </div>    
+                </div> 
+            </div> 
+        </div>
+    </main>
+</div>
+<script src="app.js"></script>  
+</body>
+</html>
